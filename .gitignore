@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# MacOS Directory Attributes
+.DS_Store
+
+# PyCharm config file
+.idea/
+
+# Training Data
+data/train.csv
