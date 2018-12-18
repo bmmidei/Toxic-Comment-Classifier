@@ -109,5 +109,7 @@ venv.bak/
 # PyCharm config file
 .idea/
 
-# Training Data
+# Training and testing data
 data/train.csv
+data/test.csv
+
