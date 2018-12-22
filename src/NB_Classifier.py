@@ -6,12 +6,12 @@ class NB_Classifier(object):
     def __init__(self, stopword_file=None):
         self.word_list = set()
         self.label_prior = {}
-        self.word_given_label = {}
+        self.word_probs = {}
 
         if stopword_file is not None:
             self.stopwords = self.extract_stopwords(stopword_file)
         else:
-            self.stopwords = None
+            self.stopwords = set()
 
     def extract_stopwords(self, stopword_file):
         stopwords = set()
@@ -37,6 +37,7 @@ class NB_Classifier(object):
             tokens = re.findall(r"[\w']+|[.,!?;]", text)
 
         return tokens
+
     def collect_dictionary(self, q_text, min_freq):
         word_dict = {}
 
@@ -52,8 +53,8 @@ class NB_Classifier(object):
 
         # Initialize occurrences to 0
         for word in self.word_list:
-            self.word_given_label[(word,0)] = 0
-            self.word_given_label[(word,1)] = 0
+            self.word_probs[(word,0)] = 0
+            self.word_probs[(word,1)] = 0
 
         for q, label in zip(q_text, labels):
             words = self.text_to_words(q, lowercase=True)
@@ -69,15 +70,15 @@ class NB_Classifier(object):
                 if word not in self.word_list:
                     pass
                 else:
-                    self.word_given_label[(word,label)] += 1
+                    self.word_probs[(word,label)] += 1
 
         # Use dictionary comprehension to compute probabilities from occurrence counts
         total_samples = sum(val for key,val in self.label_prior.items())
         self.label_prior = {key:val/total_samples for (key,val) in self.label_prior.items()}
 
         # Create 2 new dictionaries, one for each label
-        pos_dict = {key:val for (key,val) in self.word_given_label.items() if key[1]==0}
-        neg_dict = {key:val for (key,val) in self.word_given_label.items() if key[1]==1}
+        pos_dict = {key:val for (key,val) in self.word_probs.items() if key[1]==0}
+        neg_dict = {key:val for (key,val) in self.word_probs.items() if key[1]==1}
 
         # Calculate total number of words in positive and negative comments
         total_pos_words = sum(val for key,val in pos_dict.items())
@@ -87,11 +88,12 @@ class NB_Classifier(object):
         num_unique_words = len(self.word_list)
 
         # Calculate word-given-label probabilities for each label according to additive smoothing formula
+        # k is additive smoothing parameter
         pos_dict = {key:(val+k)/(total_pos_words+k*num_unique_words) for (key,val) in pos_dict.items()}
         neg_dict = {key:(val+k)/(total_neg_words+k*num_unique_words) for (key,val) in neg_dict.items()}
 
         # Merge dictionaries
-        self.word_given_label = {**pos_dict, **neg_dict}
+        self.word_probs = {**pos_dict, **neg_dict}
 
     def predict(self, text):
         # Obtain a list of individual words
@@ -101,8 +103,8 @@ class NB_Classifier(object):
         words = [word for word in words if word in self.word_list]
 
         # Create a list of probabilities for each word given the label
-        pos_probs = [self.word_given_label[(word, 0)] for word in words]
-        neg_probs = [self.word_given_label[(word, 1)] for word in words]
+        pos_probs = [self.word_probs[(word, 0)] for word in words]
+        neg_probs = [self.word_probs[(word, 1)] for word in words]
 
         # Convert to log probabilities
         log_pos_probs = [math.log(prob) for prob in pos_probs]
@@ -138,7 +140,6 @@ class NB_Classifier(object):
         num_pos = 0
         num_neg = 0
         preds = [0]*len(q_text)
-        print('There are {} comments in the test file.'.format(len(preds)))
         for idx, q in enumerate(q_text):
             # Predict label for the text
             pred_dict = self.predict(q)
@@ -150,6 +151,3 @@ class NB_Classifier(object):
             preds[idx] = pred
 
         return preds
-
-
-
