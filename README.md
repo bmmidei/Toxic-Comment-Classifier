@@ -1,10 +1,12 @@
 # Toxic-Comment-Classifier
 ## -- In Progress --
 
-This project is an development space for the Kaggle competition to classify questions as sincere or insincere. More
+This project is a development space for the Kaggle competition to classify questions as sincere or insincere. More
 information on the competition can be found [(Here)](https://www.kaggle.com/c/quora-insincere-questions-classification).
- This problem will be tackled both using a simple Naive Bayes approach, as well as by a deep learning approach.
+This problem will be tackled using both a simple Naive Bayes approach, as well as by multiple deep learning approaches.
 
+Because the competition require that jupyter notebooks be submitted for each solution, each notebook must run from start
+to finish and produce a prediction csv. All notebooks are found in the src/ directory. 
 
 ## Getting Started
 
@@ -32,9 +34,27 @@ command:
 conda create -n name_of_myenv python=3.6.7
 ```
 
+### Naive Bayes
+
+The first attempt to tackle this problem uses a Naive Bayes approach. Naive Bayes relies on the assumption that all
+word occurrences are independent of one another. This is quite a strong assumption. Therefore, Naive Bayes is often
+good for a rough model, but not complex enough to handle real world situations. For text classification specifically,
+Naive Bayes loses all notions of context in the text.
+
+Using a Naive Bayes approach, I achieved a training accuracy of 0.92. While this result seems quite good, it's actually
+a mediocre accuracy. The vast majority of data samples are labeled as sincere questions. Therefore, a model that
+makes predictions of all '0's will fare quite well. Once submitted to the Kaggle competition, this Naive Bayes
+model fared in the lowest 20% of all submissions. A stronger model than a simple Naive Bayes model is required
+to tackle this problem.
+
+### Simple LSTM
+
 ## Built With
 
 * [Pandas](https://pandas.pydata.org/) - Data preparation
+* [Keras](https://keras.io/) - Deep Learning API
+* [Tensorflow](https://www.tensorflow.org/) - Deep Learning Backend
+* [Glove](https://nlp.stanford.edu/projects/glove/) - Pretrained word embeddings
 
 ## Authors
 
