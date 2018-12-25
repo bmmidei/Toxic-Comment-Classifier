@@ -41,7 +41,7 @@ word occurrences are independent of one another. This is quite a strong assumpti
 good for a rough model, but not complex enough to handle real world situations. For text classification specifically,
 Naive Bayes loses all notions of context in the text.
 
-Using a Naive Bayes approach, I achieved a training accuracy of 0.92. While this result seems quite good, it's actually
+Using a Naive Bayes approach, I achieved a training accuracy of 0.926. While this result seems quite good, it's actually
 a mediocre accuracy. The vast majority of data samples are labeled as sincere questions. Therefore, a model that
 makes predictions of all '0's will fare quite well. Once submitted to the Kaggle competition, this Naive Bayes
 model fared in the lowest 20% of all submissions. A stronger model than a simple Naive Bayes model is required
@@ -52,6 +52,7 @@ to tackle this problem.
 ## Built With
 
 * [Pandas](https://pandas.pydata.org/) - Data preparation
+* [scikit-learn](https://scikit-learn.org/) - Machine Learning Library
 * [Keras](https://keras.io/) - Deep Learning API
 * [Tensorflow](https://www.tensorflow.org/) - Deep Learning Backend
 * [Glove](https://nlp.stanford.edu/projects/glove/) - Pretrained word embeddings
