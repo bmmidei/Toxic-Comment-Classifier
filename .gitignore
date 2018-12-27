@@ -110,8 +110,8 @@ venv.bak/
 .idea/
 
 # Training and testing data
-data/train.csv
-data/test.csv
+input/train.csv
+input/test.csv
 
 # Word embeddings
-embeddings/
+input/embeddings/
