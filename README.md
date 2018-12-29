@@ -49,6 +49,12 @@ to tackle this problem.
 
 ### Simple LSTM
 
+The next notebook uses GloVe word embeddings to preprocess the raw text and then uses a bidirectional LSTM Neural
+Network architecture to make predictions. This results in a significantly improved accuracy. The F1-score obtained
+from this approach is 0.647.
+
+More information on F1-score can be found [here](https://en.wikipedia.org/wiki/F1_score)
+
 ## Built With
 
 * [Pandas](https://pandas.pydata.org/) - Data preparation
@@ -56,6 +62,9 @@ to tackle this problem.
 * [Keras](https://keras.io/) - Deep Learning API
 * [Tensorflow](https://www.tensorflow.org/) - Deep Learning Backend
 * [Glove](https://nlp.stanford.edu/projects/glove/) - Pretrained word embeddings
+* [NLTK](https://www.nltk.org/) - Natural Language ToolKit
+* [Seaborn](https://seaborn.pydata.org/) - Statistical data visualization
+* [WordCloud](https://amueller.github.io/word_cloud/) - WordCloud generator
 
 ## Authors
 
