@@ -62,6 +62,7 @@ I decided to experiment with a CNN architecture to see if I could achieve result
 
 After quite a bit of tinkering, this network architecture was found to achieve an F1 Score of 0.641. This was not an
 improvement on the LSTM, but still proves that CNNs can achieve perform admirably at classification of sequential data.
+![CNN](./ims/ConvNet1D.png)
 
 ## Built With
 
