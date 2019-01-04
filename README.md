@@ -1,59 +1,67 @@
 # Toxic-Comment-Classifier
-## -- In Progress --
+
+## Overview
 
 This project is a development space for the Kaggle competition to classify questions as sincere or insincere. More
 information on the competition can be found [(Here)](https://www.kaggle.com/c/quora-insincere-questions-classification).
-This problem will be tackled using both a simple Naive Bayes approach, as well as by multiple deep learning approaches.
+This problem will be tackled using both a simple Naive Bayes approach  as well as by multiple deep learning approaches.
+The goal is to compare and contrast the viability of different approaches to binary classification of text.
 
-Because the competition require that jupyter notebooks be submitted for each solution, each notebook must run from start
-to finish and produce a prediction csv. All notebooks are found in the src/ directory. 
+The approaches used are:
+* Naive Bayes
+* LSTM with GloVe word embeddings
+* CNN with GloVe word embeddings
+* TODO - Attention Network
 
-## Getting Started
+Because the competition requires that jupyter notebooks be submitted for each solution, each notebook must run from start
+to finish and produce a prediction csv. All notebooks are found in the src/ directory. If you would like to run these
+Notebooks yourself on a local machine, you can view the separate README in the src/ directory. Note that you'll need
+a GPU to train the neural networks in a reasonable amount of time. Using a cloud instance training with an Nvidia
+Tesla K80 GPU, the neural networks take ~10 minutes to train.
 
-Following these instructions will get you a copy of the project up and running on your local machine for development
-and testing purposes.
+## Evalutaion using F1 Score
+There are many more 'sincere' questions than 'inscincere' in the dataset. Therefore, simply evaluating each contestant
+based on accuracy (num correct/total) is a bit misleading because a model that predicts all 'insincere' will yield a 
+solid accuracy, but not be very useful to the customer.
 
-### Prerequisites
+Instead, the contestants are evaluated based on F1 Score. This score better accounts for false positives and false negatives.
+More information on F1 Score can be found in this [article](https://machinelearningmastery.com/classification-accuracy-is-not-enough-more-performance-measures-you-can-use/).
 
-Running the code in this repository requires elementary knowledge of both Jupyter and Anaconda. It is recommended that 
-new users create a new virtual environment with Anaconda to ensure that package dependencies match the developer 
-versions. If you are unfamiliar with Anaconda, you can find more information and getting started tutorials here:
-https://conda.io/docs/user-guide/overview.html
-
-Begin by creating a directory on your local machine and cloning this repository using the ```git clone``` command.
-Within the top level directory, you will find a 'req.txt' file, which includes a comprehensive list of dependencies
- necessary to execute the functionality of this repository. Use the following command to create a new conda environment
-and install the necessary dependencies.
-```
-conda create -n new_env_name --file req.txt
-```
-
-Note that python version 3.6.7 was used for this project. To create a new Anaconda environment, you may use the terminal
-command:
-```
-conda create -n name_of_myenv python=3.6.7
-```
 
 ### Naive Bayes
 
 The first attempt to tackle this problem uses a Naive Bayes approach. Naive Bayes relies on the assumption that all
-word occurrences are independent of one another. This is quite a strong assumption. Therefore, Naive Bayes is often
-good for a rough model, but not complex enough to handle real world situations. For text classification specifically,
-Naive Bayes loses all notions of context in the text.
+word occurrences are independent of one another. The following is a visualization of the Naive Bayes method, which
+illustrates that each word contributes its probabilities to the overall classification of the sequence, but words
+are independent of one another. This is quite a strong assumption.
+
+![NB](./ims/NB.png)
+
+Naive Bayes is often good for a rough model, but not complex enough to handle real world situations. For text 
+classification specifically, Naive Bayes loses all notions of context in the text.
 
 Using a Naive Bayes approach, I achieved a training accuracy of 0.926. While this result seems quite good, it's actually
 a mediocre accuracy. The vast majority of data samples are labeled as sincere questions. Therefore, a model that
 makes predictions of all '0's will fare quite well. Once submitted to the Kaggle competition, this Naive Bayes
-model fared in the lowest 20% of all submissions. A stronger model than a simple Naive Bayes model is required
-to tackle this problem.
+model fared in the lowest 20% of all submissions with an F1 score of 0.526. A stronger model than a simple Naive Bayes
+ model is required to tackle this problem.
 
-### Simple LSTM
+### Shallow LSTM with GloVe
 
 The next notebook uses GloVe word embeddings to preprocess the raw text and then uses a bidirectional LSTM Neural
 Network architecture to make predictions. This results in a significantly improved accuracy. The F1-score obtained
 from this approach is 0.647.
 
-More information on F1-score can be found [here](https://en.wikipedia.org/wiki/F1_score)
+### CNN with GloVe
+
+While RNNs have received a great deal of attention in recent years with the advent of the LSTM and later GRU
+architectures, they have also received some healthy skepticism as of late due to their relative complexity when
+compared to MLPs and CNNs. Inspired by articles such as [this](https://arxiv.org/abs/1803.01271) and 
+[this](https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0),
+I decided to experiment with a CNN architecture to see if I could achieve results comparable to that of the RNN. 
+
+After quite a bit of tinkering, this network architecture was found to achieve an F1 Score of 0.641. This was not an
+improvement on the LSTM, but still proves that CNNs can achieve perform admirably at classification of sequential data.
 
 ## Built With
 
