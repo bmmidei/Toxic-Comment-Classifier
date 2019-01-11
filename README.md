@@ -34,8 +34,11 @@ The first attempt to tackle this problem uses a Naive Bayes approach. Naive Baye
 word occurrences are independent of one another. The following is a visualization of the Naive Bayes method, which
 illustrates that each word contributes its probabilities to the overall classification of the sequence, but words
 are independent of one another. This is quite a strong assumption.
-<div style="text-align:center"><img src ='./ims/NB.png'/></div>
-<center><i>Naive Bayes conditional probability</i></center>
+
+<p align="center">
+	<img src ='./ims/NB.png'/>
+	<i>Naive Bayes conditional probability</i>
+</p>
 
 Naive Bayes is often good for a rough model, but not complex enough to handle real world situations. For text 
 classification specifically, Naive Bayes loses all notions of context in the text.
@@ -63,8 +66,12 @@ sizes 50, 100, 200, 300, resulting in less trainable parameters than a one-hot e
 * **Context** - More important than space considerations, however, is the valuable contextual information retained using
 word embeddings. Because the word vectors are based on statistical relationships between words, more contextual 
 information is retained. A common example is found below:
-<div style="text-align:center"><img src ='./ims/king_queen.png'/></div>
-<center><i>Example of word embedding relationships</i></center>
+
+<p align="center">
+	<img src ='./ims/king_queen.png'/>
+	<i>Example of word embeddings releationship</i>
+</p>
+
 In a one hot encoding, the words 'king' and 'queen' would have no relationship, however with word embeddings, this
 relationship is preserved.
 
@@ -77,8 +84,11 @@ such as text classification.
 The LSTM notebook uses GloVe word embeddings to preprocess the raw text and then uses a bidirectional LSTM Neural
 Network architecture to make predictions. This results in a significantly improved F1-Score over the Naive-Bayes approach.
 The F1-Score obtained from this model is 0.647 with the network architecture shown below:
-<div style="text-align:center"><img src ='./ims/LSTM.png'/></div>
-<center><i>Bidirectional LSTM Architecture</i></center>
+
+<p align="center">
+	<img src ='./ims/LSTM.png'/>
+	<i>Bidirectional LSTM Architecture</i>
+</p>
 
 ### CNN with GloVe
 While RNNs have received a great deal of attention in recent years with the advent of the LSTM and later GRU
@@ -90,8 +100,11 @@ I decided to experiment with a CNN architecture to see if I could achieve result
 After quite a bit of tinkering, this network architecture was found to achieve an F1-Score of 0.641. This was not an
 improvement on the LSTM, but still proves that CNNs can achieve perform admirably at classification of sequential data.
 Similar to the LSTM, a GloVe word embedding was used as the input layer.
-<div style="text-align:center"><img src ='./ims/ConvNet1D.png'/></div>
-<center><i>CNN Architecture</i></center>
+
+<p align="center">
+	<img src ='./ims/ConvNet1D.png'/>
+	<i>CNN Architecture</i>
+</p>
 
 ## Built With
 * [Pandas](https://pandas.pydata.org/) - Data preparation
