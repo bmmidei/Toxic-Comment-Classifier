@@ -36,8 +36,9 @@ illustrates that each word contributes its probabilities to the overall classifi
 are independent of one another. This is quite a strong assumption.
 <p align="center">
 	<img src ='./ims/NB.png'/>
+	<br>
+	<i>Naive Bayes conditional probability</i>
 </p>
-<div style="text-align:center"><i>Naive Bayes conditional probability</i></div>
 
 Naive Bayes is often good for a rough model, but not complex enough to handle real world situations. For text 
 classification specifically, Naive Bayes loses all notions of context in the text.
