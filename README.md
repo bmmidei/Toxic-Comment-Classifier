@@ -34,10 +34,8 @@ The first attempt to tackle this problem uses a Naive Bayes approach. Naive Baye
 word occurrences are independent of one another. The following is a visualization of the Naive Bayes method, which
 illustrates that each word contributes its probabilities to the overall classification of the sequence, but words
 are independent of one another. This is quite a strong assumption.
-<div style="text-align:center">
-	<img src ='./ims/NB.png'/>
-	<i>Naive Bayes conditional probability</i>
-</div>
+<div style="text-align:center"><img src ='./ims/NB.png'/></div>
+<center><i>Naive Bayes conditional probability</i></center>
 
 Naive Bayes is often good for a rough model, but not complex enough to handle real world situations. For text 
 classification specifically, Naive Bayes loses all notions of context in the text.
@@ -48,7 +46,7 @@ makes predictions of all '0's will fare quite well. Once submitted to the Kaggle
 model fared in the lowest 20% of all submissions with an F1 score of 0.526. A stronger model than a simple Naive Bayes
  model is required to tackle this problem.
 
-### GloVe Word Embeddings
+### Quick Note on GloVe Word Embeddings
 All of the following Neural Network architectures make use of word embeddings, specifically GloVe word embeddings. GloVe
 stands for 'Global Vectors for Word Representation'. Word embeddings such as GloVe represent each word as a vector
  as opposed to a one-hot encoding. GloVe specifically is trained on a text corpus from which co-occurances statistics
@@ -65,7 +63,7 @@ sizes 50, 100, 200, 300, resulting in less trainable parameters than a one-hot e
 * **Context** - More important than space considerations, however, is the valuable contextual information retained using
 word embeddings. Because the word vectors are based on statistical relationships between words, more contextual 
 information is retained. A common example is found below:
-![king_queen](./ims/king_queen.png)
+<div style="text-align:center"><img src ='./ims/king_queen.png'/></div>
 <center><i>Example of word embedding relationships</i></center>
 In a one hot encoding, the words 'king' and 'queen' would have no relationship, however with word embeddings, this
 relationship is preserved.
@@ -79,7 +77,7 @@ such as text classification.
 The LSTM notebook uses GloVe word embeddings to preprocess the raw text and then uses a bidirectional LSTM Neural
 Network architecture to make predictions. This results in a significantly improved F1-Score over the Naive-Bayes approach.
 The F1-Score obtained from this model is 0.647 with the network architecture shown below:
-![LSTM](./ims/LSTM.png)
+<div style="text-align:center"><img src ='./ims/LSTM.png'/></div>
 <center><i>Bidirectional LSTM Architecture</i></center>
 
 ### CNN with GloVe
@@ -92,7 +90,7 @@ I decided to experiment with a CNN architecture to see if I could achieve result
 After quite a bit of tinkering, this network architecture was found to achieve an F1-Score of 0.641. This was not an
 improvement on the LSTM, but still proves that CNNs can achieve perform admirably at classification of sequential data.
 Similar to the LSTM, a GloVe word embedding was used as the input layer.
-![CNN](./ims/ConvNet1D.png)
+<div style="text-align:center"><img src ='./ims/ConvNet1D.png'/></div>
 <center><i>CNN Architecture</i></center>
 
 ## Built With
