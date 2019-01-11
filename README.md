@@ -68,8 +68,9 @@ word embeddings. Because the word vectors are based on statistical relationships
 information is retained. A common example is found below:
 <p align="center">
 	<img src ='./ims/king_queen.png'/>
+	<br>
+	<i>Example of word embeddings relationship</i>
 </p>
-<div style="text-align:center"><i>Example of word embeddings relationship</i></div>
 
 In a one hot encoding, the words 'king' and 'queen' would have no relationship, however with word embeddings, this
 relationship is preserved.
@@ -85,8 +86,9 @@ Network architecture to make predictions. This results in a significantly improv
 The F1-Score obtained from this model is 0.647 with the network architecture shown below:
 <p align="center">
 	<img src ='./ims/LSTM.png'/>
+	<br>
+	<i>Bidirectional LSTM Architecture</i>
 </p>
-<div style="text-align:center"><i>Bidirectional LSTM Architecture</i></div>
 
 ### CNN with GloVe
 While RNNs have received a great deal of attention in recent years with the advent of the LSTM and later GRU
@@ -100,8 +102,9 @@ improvement on the LSTM, but still proves that CNNs can achieve perform admirabl
 Similar to the LSTM, a GloVe word embedding was used as the input layer.
 <p align="center">
 	<img src ='./ims/ConvNet1D.png'/>
+	<br>
+	<i>CNN Architecture</i>
 </p>
-<div style="text-align:center"><i>CNN Architecture</i></div>
 
 ## Built With
 * [Pandas](https://pandas.pydata.org/) - Data preparation
