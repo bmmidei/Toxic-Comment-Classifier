@@ -37,7 +37,7 @@ are independent of one another. This is quite a strong assumption.
 <p align="center">
 	<img src ='./ims/NB.png'/>
 </p>
-<center><i>Naive Bayes conditional probability</i></center>
+<div style="text-align:center"><i>Naive Bayes conditional probability</i></div>
 
 Naive Bayes is often good for a rough model, but not complex enough to handle real world situations. For text 
 classification specifically, Naive Bayes loses all notions of context in the text.
@@ -68,7 +68,7 @@ information is retained. A common example is found below:
 <p align="center">
 	<img src ='./ims/king_queen.png'/>
 </p>
-<center><i>Example of word embeddings releationship</i></center>
+<div style="text-align:center"><i>Example of word embeddings relationship</i></div>
 
 In a one hot encoding, the words 'king' and 'queen' would have no relationship, however with word embeddings, this
 relationship is preserved.
@@ -85,7 +85,7 @@ The F1-Score obtained from this model is 0.647 with the network architecture sho
 <p align="center">
 	<img src ='./ims/LSTM.png'/>
 </p>
-<center><i>Bidirectional LSTM Architecture</i></center>
+<div style="text-align:center"><i>Bidirectional LSTM Architecture</i></div>
 
 ### CNN with GloVe
 While RNNs have received a great deal of attention in recent years with the advent of the LSTM and later GRU
@@ -100,7 +100,7 @@ Similar to the LSTM, a GloVe word embedding was used as the input layer.
 <p align="center">
 	<img src ='./ims/ConvNet1D.png'/>
 </p>
-<center><i>CNN Architecture</i></center>
+<div style="text-align:center"><i>CNN Architecture</i></div>
 
 ## Built With
 * [Pandas](https://pandas.pydata.org/) - Data preparation
